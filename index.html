@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .nav
+        {
+            background-color: aqua;
+            display: grid;
+            grid-template-columns: 30% 70%;
+        }
+
+        .menu
+        {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: left;
+            gap: 30px;
+        }
+
+        .add_1
+        {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: right;
+        }
+
+        #add_2
+        {
+            position: absolute;
+            margin-right: 50px;
+
+        }
+
+        #add_2 h3
+        {
+            color: red;
+        }
+
+        #add_2:hover
+        {
+            scale: 1.5;
+        }
+
+        .remove_button_2
+        {
+            background-color: red;
+            margin: 15px;
+        }
+
+        .remove_button_2:hover
+        {
+            scale: 1.2;
+        }
+
+        .cart_item
+        {
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: left;
+        }
+
+        .body
+        {
+            width: 100%;
+            height: 1000px;
+            background-color: blue;
+            display: grid;
+            grid-template-columns: auto auto auto;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .article
+        {
+            width: 250px;
+            height: 400px;
+            background-color: white;
+            border-radius:20px;
+            overflow: hidden;
+
+        }
+
+        .img_1
+        {
+            width: 100%;
+            height: 50%;
+        }
+
+        .img_2
+        {
+            width: 100%;
+            height: 100%;
+        }
+
+        .title
+        {
+            width: 100%;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .parg
+        {
+            width: 100%;
+            padding: 10px;
+        }
+
+        .price
+        {
+            width: 100%;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .article_button_1
+        {
+            width: 100%;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .article_button_2
+        {
+            width: 100px;
+            height: 25px;
+            background-color: aqua;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            border-radius: 5px;
+
+        }
+
+        .article_button_2:hover
+        {
+            scale: 1.2;
+        }
+
+        #adding_box
+        {
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <div class="menu">
+            <div>
+                <h2>Nil Shop</h2>
+            </div>
+            <div>
+                <h3>Home</h3>
+            </div>
+            <div>
+                <h3>Shop</h3>
+            </div>
+        </div>
+
+        <div class="add_1">
+            <button id="add_2" onclick="toggleFunction()">
+                <h3>Add</h3>
+            </button>
+        </div>
+        
+
+    </div>
+
+    <div id="adding_box">
+            <!-- <div class="img_1">
+            </div> -->
+            <div class="title">
+                <h3>Your cart </h3>
+            </div>
+            
+            <!-- HTML to include a cart section where the cart items will be displayed -->
+            <div class="cart_section">
+                <h3>Your Cart</h3>
+                <div id="cart_items"></div>
+                <div id="cart_total"></div> <!-- Add a container for the cart total -->
+            </div>
+            <button class="remove_button_2" onclick="removeFromCart()">Remove from cart</button>
+        </div>
+        
+
+
+
+
+    <div class="body">
+        <div class="article">
+            <div class="img_1">
+                <img class="img_2" src="./assets/Roast_beef_with_mushrooms.jpg" alt="Roast_beef_with_mushrooms">
+            </div>
+            <div class="title">
+                <h3>Roast beef with mushrooms</h3>
+            </div>
+            <div class="parg">
+                <p> this is the product description that will be displayed to the end user</p>
+            </div>
+            <div class="price">
+                <h3>Price: </h3>
+                <div>1000 </div>
+                <h3> DZD</h3> 
+
+            </div>
+            <div class="article_button_1">
+
+                <!-- pass the item name and price in the onclick button -->
+
+                <button class="article_button_2" onclick="add_item('Roast beef with mushrooms', 1000, this.parentElement.querySelector('.quantity_input').value)">Add to cart</button>
+                <input type="number" value="1" min="1" class="quantity_input">
+
+            </div>
+            
+            
+        </div>
+        <div class="article">
+            <div class="img_1">
+                <img class="img_2" src="./assets/shrimp.jpg" alt="shrimp">
+            </div>
+            <div class="title">
+                <h3>shrimp</h3>
+            </div>
+            <div class="parg">
+                <p> this is the product description that will be displayed to the end user</p>
+            </div>
+            <div class="price">
+                <h3>Price: </h3>
+                <div>2000 </div>
+                <h3> DZD</h3> 
+
+            </div>
+            <div class="article_button_1">
+                <button class="article_button_2" onclick="add_item('shrimp', 2000, this.parentElement.querySelector('.quantity_input').value)">Add to cart</button>
+                <input type="number" value="1" min="1" class="quantity_input">
+            </div>
+            
+        </div>
+
+        <div class="article">
+            <div class="img_1">
+                <img class="img_2" src="./assets/Shrimp_with_peas.jpg" alt="Shrimp_with_peas">
+            </div>
+            <div class="title">
+                <h3>Shrimp with peas</h3>
+            </div>
+            <div class="parg">
+                <p> this is the product description that will be displayed to the end user</p>
+            </div>
+            <div class="price">
+                <h3>Price: </h3>
+                <div>2500 </div>
+                <h3> DZD</h3> 
+
+            </div>
+            <div class="article_button_1">
+                <button class="article_button_2" onclick="add_item('Shrimp with peas', 2500, this.parentElement.querySelector('.quantity_input').value)">Add to cart</button>
+                <input type="number" value="1" min="1" class="quantity_input">
+            </div>
+            
+        </div>
+
+        <div class="article">
+            <div class="img_1">
+                <img class="img_2" src="./assets/turkey_breast.jpg" alt="turkey_breast">
+            </div>
+            <div class="title">
+                <h3>turkey breast</h3>
+            </div>
+            <div class="parg">
+                <p> this is the product description that will be displayed to the end user</p>
+            </div>
+            <div class="price">
+                <h3>Price: </h3>
+                <div>1500 </div>
+                <h3> DZD</h3> 
+
+            </div>
+            <div class="article_button_1">
+                <button class="article_button_2" onclick="add_item('turkey breast', 1500, this.parentElement.querySelector('.quantity_input').value)">Add to cart</button>
+                <input type="number" value="1" min="1" class="quantity_input">
+            </div>
+            
+        </div>
+
+        <div class="article">
+            <div class="img_1">
+                <img class="img_2" src="./assets/meat.jpg" alt="meat">
+            </div>
+            <div class="title">
+                <h3>meat</h3>
+            </div>
+            <div class="parg">
+                <p> this is the product description that will be displayed to the end user</p>
+            </div>
+            <div class="price">
+                <h3>Price: </h3>
+                <div>3000 </div>
+                <h3> DZD</h3> 
+
+            </div>
+            <div class="article_button_1">
+                <button class="article_button_2" onclick="add_item('meat', 3000, this.parentElement.querySelector('.quantity_input').value)">Add to cart</button>
+                <input type="number" value="1" min="1" class="quantity_input">
+            </div>
+            
+        </div>
+
+        <div class="article">
+            <div class="img_1">
+                <img class="img_2" src="./assets/Veggie_Pizza.jpg" alt="Veggie_Pizza">
+            </div>
+            <div class="title">
+                <h3>Veggie Pizza</h3>
+            </div>
+            <div class="parg">
+                <p> this is the product description that will be displayed to the end user</p>
+            </div>
+            <div class="price">
+                <h3>Price: </h3>
+                <div>800 </div>
+                <h3> DZD</h3> 
+
+            </div>
+            <div class="article_button_1">
+                <button class="article_button_2" onclick="add_item('Veggie Pizza', 800, this.parentElement.querySelector('.quantity_input').value)">Add to cart</button>
+                <input type="number" value="1" min="1" class="quantity_input">
+            </div>
+            
+        </div>
+        
+    </div>
+    
+</body>
+<script>
+
+// 1- Create an empty array to store the cart items:
+
+let cartItems = [];
+
+function updateCartTotal() {
+    const cartTotalDiv = document.getElementById("cart_total");
+    const total = cartItems.reduce((acc, item) => acc + item.price, 0);
+    cartTotalDiv.innerHTML = `<p>Total: ${total} DZD</p>`; // Update the content directly
+}
+
+
+function toggleFunction() {
+    var x = document.getElementById("adding_box");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+                
+    } else {
+        x.style.display = "none";
+    }
+}
+function add_item(itemName, itemPrice, quantity) {
+    
+    var x = document.getElementById("adding_box");    
+    if(x.style.display == "block")
+        {
+            cost(itemName, itemPrice, quantity);
+            updateCartDisplay();
+            updateCartTotal(); 
+        }
+    
+}
+
+function cost(itemName, itemPrice, quantity) 
+{ 
+            cartItems.push({ name: itemName, price: itemPrice*quantity });      
+}
+
+
+// function that calculates the total price of items in the cart and updates the cart total display
+
+// function updateCartTotal() {
+//     const cartTotalDiv = document.getElementById("cart_total");
+//     const total = cartItems.reduce((acc, item) => acc + item.price, 0);
+//     cartTotalDiv.textContent = `Total: ${total} DZD`;
+// }
+
+// 2- toggleFunction() to add items to the cart and update the cart display:
+
+// function toggleFunction(itemName, itemPrice) {
+//     var x = document.getElementById("adding_box");
+//     if (x.style.display === "none") {
+//         x.style.display = "block";
+//         cartItems.push({ name: itemName, price: itemPrice });
+//         updateCartDisplay();
+//         updateCartTotal();
+//     } else {
+//         x.style.display = "none";
+//     }
+// }
+
+// 3- Add a function to update the cart display:
+
+function updateCartDisplay() {
+    const cartDiv = document.getElementById("cart_items");
+    cartDiv.innerHTML = ""; // Clear previous cart content
+
+    cartItems.forEach((item,ind) => {
+        const itemDiv = document.createElement("div");
+        itemDiv.className = "cart_item";
+        itemDiv.innerHTML = `<p>${item.name} - ${item.price} DZD</p> <button class="remove_button_2" onclick=removeFromCart("${ind}")>remove item</button>`;
+        cartDiv.appendChild(itemDiv);
+    });
+}
+
+
+
+// function to remove items from the cart:
+
+function removeFromCart(ind) {
+    cartItems.splice(ind, 1);
+    updateCartDisplay();
+    updateCartTotal();
+}
+
+
+
+    
+
+    // function toggleFunction()
+    // {
+    //     var x = document.getElementById("adding_box");
+    //     if(x.style.display === "none")
+    //     {
+    //         x.style.display = "block";
+    //     } else {
+    //         x.style.display = "none";
+    //     }
+    // }
+
+
+</script>
+</html>
